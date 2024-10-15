@@ -1,0 +1,62 @@
+.wuxian-fancyzones {
+  .splitpanes {
+    background: var(--background-color);
+
+    &__pane {
+      background-color: #fff;
+    }
+
+    .splitpanes__splitter {
+      position: relative;
+      display: flex;
+      min-width: 0;
+      width: 0;
+      min-height: 0;
+      height: 0;
+      background: transparent;
+
+      &::before {
+        content: '';
+        position: absolute;
+        background: var(--space-line-color);
+        transition: all 0.2s;
+      }
+
+      &:hover::before {
+        background: var(--space-line-hover-color);
+      }
+    }
+
+    &.splitpanes--vertical>.splitpanes__splitter {
+      justify-content: center;
+      width: var(--space-size);
+      height: 100%;
+
+      &::before {
+        top: 0;
+        bottom: 0;
+        width: var(--space-line-size);
+      }
+
+      &:hover::before {
+        width: var(--space-line-hover-size);
+      }
+    }
+
+    &.splitpanes--horizontal>.splitpanes__splitter {
+      align-items: center;
+      width: 100%;
+      height: var(--space-size);
+
+      &::before {
+        left: 0;
+        right: 0;
+        height: var(--space-line-size);
+      }
+
+      &:hover::before {
+        height: var(--space-line-hover-size);
+      }
+    }
+  }
+}

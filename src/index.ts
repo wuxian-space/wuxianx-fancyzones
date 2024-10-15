@@ -1,5 +1,5 @@
 import type { App } from 'vue';
-import WuxianFancyzones from './components/WuxianFancyzones.vue';
+import WuxianFancyzones from './components/WuxianFancyzones';
 
 const plugin = {
   install(app: App) {
