@@ -1,0 +1,45 @@
+name: gh-pages
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build Docs
+        run: pnpm docs:build
+
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v4.0.0
+        with:
+          target_branch: gh-pages
+          build_dir: docs/.vitepress/dist
+          fqdn: fancyzones.wuxian.space
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
